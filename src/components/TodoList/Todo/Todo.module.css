@@ -1,0 +1,17 @@
+.todo {
+    display: flex;
+    padding: 1.5rem 3rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.todoRemove {
+    font-size: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #ff4262;
+}
+
+.todo:nth-child(odd) {
+    background-color: #f2f3f4;
+}

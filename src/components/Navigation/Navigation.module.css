@@ -1,0 +1,37 @@
+.navigation {
+    width: 100%;
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+    background-color: #071B30;
+    color: #f2f3f4;
+}
+
+.navigationContainer {
+    display: flex;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navigationMenu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.navigationMenuLink {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-left: 2.5rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: currentColor;
+}
+
+.navigationLogo {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 2rem;
+}
