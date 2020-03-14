@@ -2,3 +2,9 @@
     width: 80%;
     margin: 5rem auto 0;
 }
+
+.appLoaderContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,10 @@
+.todoModal {
+    box-shadow: 0 .5rem 1rem #F0F0F0;
+    background-color: #ffffff;
+}
+
+.todoModalTitle {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}

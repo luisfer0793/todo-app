@@ -5,10 +5,18 @@
     justify-content: space-between;
 }
 
-.todoRemove {
-    font-size: 2rem;
-    font-weight: 600;
+.todoAction {
+    margin-left: 2rem;
+    font-size: 1.5rem;
+    font-weight: 400;
     cursor: pointer;
+}
+
+.todoActionOpen {
+    color: #17a2b8;
+}
+
+.todoActionRemove {
     color: #ff4262;
 }
 

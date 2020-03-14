@@ -6,7 +6,7 @@ import styles from './TodoList.module.css';
 
 const TodoList = props => (
     <ul className={styles.todoList}>
-        {props.todos.map(todo => <Todo key={todo.id} text={todo.text}/>)}
+        {props.todos.map(todo => <Todo key={todo.id} title={todo.title}/>)}
     </ul>
 );
 
