@@ -1,36 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Loader from 'react-loader-spinner';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import TodoList from '../components/TodoList/TodoList';
 import TodoForm from '../components/TodoForm/TodoForm';
-//import TodoModal from "../components/TodoModal/TodoModal";
-
+// import TodoModal from "../components/TodoModal/TodoModal";
 import Navigation from '../components/Navigation/Navigation';
+
+import { fetching, updateTodos } from '../redux/actions/actions';
+
 import styles from './App.module.css';
 
 const App = props => {
     const API_KEY = '$2b$10$j5fgQlXvY.NjfsN7ZrTtueuGmlSSR.PwqJPHxSAEG8yF/z4MEJ3gi';
-    const URL = 'https://api.jsonbin.io/b/5e67161018ca1e372e497c17/1';
-    
-    const [todos, setTodos] = useState([]);
-    const [isSpinnerVisible, setIsSpinnerVisible] = useState(false);
+    const URL = 'https://api.jsonbin.io/b/5e67161018ca1e372e497c17/2';
     
     useEffect(() => {
-        const headers = new Headers({
-            'secret-key': API_KEY
-        });
-        fetch(URL, {headers})
-            .then(response => response.json())
-            .then(data => setTodos(data))
-            .catch(error => console.error(error))
+        const fetchData = async () => {
+            const init = {
+                method: 'GET',
+                json: true,
+                headers: {
+                    'secret-key': API_KEY
+                }
+            };
+            const response = await fetch(URL, init);
+            const data = await response.json();
+            props.setTodos(data.todos);
+            props.setFetching(false);
+        }
+        fetchData().catch(error => console.error(error));
     }, []);
     
     const mainSection = (
-        <main className={styles.app}>
+        <main className={styles.appMain}>
             <Switch>
                 <Route path="/" exact>
-                    <TodoList todos={todos} />
+                    <TodoList todos={props.todos} />
                 </Route>
                 <Route path="/add" exact>
                     <TodoForm />
@@ -49,10 +56,24 @@ const App = props => {
         <React.Fragment>
             <Router>
                 <Navigation/>
-                {isSpinnerVisible ? spinner : mainSection}
+                { props.isFetching ? spinner : mainSection }
             </Router>
         </React.Fragment>
     );
 };
 
-export default App;
+const mapStateToProps = state => ({
+    todos: state.todos,
+    isFetching: state.isFetching
+});
+
+const mapDispatchToProps = dispatch => ({
+    setFetching(isFetching) {
+        dispatch(fetching(isFetching));
+    },
+    setTodos(todos) {
+        dispatch(updateTodos(todos));
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
